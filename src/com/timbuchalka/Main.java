@@ -7,14 +7,6 @@ public class Main {
 
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
-//        arrays();
-        arraysInputs();
-
-
-    }
-
-
     private static void arrays() {
 
 //        int[] myIntArray = {1,2,3,4,5,6,7,8,9,10};
@@ -95,5 +87,28 @@ public class Main {
         }
 
         return (double) sum/ (double) array.length;
+    }
+
+
+    public static void listAndArrayList() {
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+    public static void main(String[] args) {
+//        arrays();
+//        arraysInputs();
+        listAndArrayList();
+
+
     }
 }
