@@ -1,5 +1,6 @@
 package com.timbuchalka;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -37,11 +38,11 @@ public class Main {
         while (flag) {
             flag = false;
 
-            for (int i = 0; i<sortedArray.length-1; i++ ) {
-                if(sortedArray[i] < sortedArray [i+1]) {
+            for (int i = 0; i < sortedArray.length - 1; i++) {
+                if (sortedArray[i] < sortedArray[i + 1]) {
                     temp = sortedArray[i];
-                    sortedArray[i] = sortedArray [i+1];
-                    sortedArray[i+1] = temp;
+                    sortedArray[i] = sortedArray[i + 1];
+                    sortedArray[i + 1] = temp;
                     flag = true;
                 }
             }
@@ -51,7 +52,7 @@ public class Main {
 
     public static void printArray(int[] array) {
 
-        for(int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             System.out.println("element " + i + ", value is " + array[i]);
         }
     }
@@ -62,7 +63,7 @@ public class Main {
         int[] sorted = sortIntegers(myIntegers);
         printArray(sorted);
 
-        for (int i = 0; i<myIntegers.length; i++) {
+        for (int i = 0; i < myIntegers.length; i++) {
             System.out.println("element " + i + ", typed value was " + myIntegers[i]);
         }
 
@@ -74,7 +75,7 @@ public class Main {
         System.out.println("Enter " + number + "int values.\r");
         int[] values = new int[number];
 
-        for(int i = 0; i<values.length; i++) {
+        for (int i = 0; i < values.length; i++) {
             values[i] = scanner.nextInt();
         }
 
@@ -83,11 +84,11 @@ public class Main {
 
     public static double getAverage(int[] array) {
         int sum = 0;
-        for(int i = 0; i<array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             sum += array[i];
         }
 
-        return (double) sum/ (double) array.length;
+        return (double) sum / (double) array.length;
     }
 
 
@@ -121,6 +122,9 @@ public class Main {
                     searchForItem();
                     break;
                 case 6:
+                    processArrayList();
+                    break;
+                case 7:
                     quit = true;
                     break;
             }
@@ -146,35 +150,43 @@ public class Main {
 
     public static void modifyItem() {
 
-        System.out.println("Enter item number: ");
-        int itemNo = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Enter replacment item: ");
+        System.out.println("Enter current item name: ");
+        String item = scanner.nextLine();
+        System.out.println("Enter replacement item: ");
         String newItem = scanner.nextLine();
-        groceryList.modifyGroceryItem(itemNo-1, newItem);
+        groceryList.modifyGroceryItem(item, newItem);
     }
 
     public static void removeItem() {
 
         System.out.println("Enter item number: ");
-        int itemNo = scanner.nextInt();
+        String itemNo = scanner.nextLine();
         scanner.nextLine();
-        groceryList.removeGroceryItem(itemNo-1);
+        groceryList.removeGroceryItem(itemNo);
     }
 
     public static void searchForItem() {
 
         System.out.println("Item to search for: ");
         String searchItem = scanner.nextLine();
-        if(groceryList.findItem(searchItem) != null) {
-            System.out.println("Found" + searchItem + " in our grocery list0");
+        if (groceryList.onFile(searchItem)) {
+            System.out.println("Found " + searchItem + " in our grocery2list0");
         } else {
-            System.out.println(searchItem + "is not in the shopping list");
+            System.out.println(searchItem + " is not in the shopping list");
         }
     }
 
+    public static void processArrayList() {
 
+        ArrayList<String> newArray = new ArrayList<String>();
+        newArray.addAll(groceryList.getGroceryList());
 
+        ArrayList<String> nextArray = new ArrayList<String>(groceryList.getGroceryList());
+
+        String[] myArray = new String[groceryList.getGroceryList().size()];
+        myArray = groceryList.getGroceryList().toArray(myArray);
+
+    }
 
 
     public static void main(String[] args) {
